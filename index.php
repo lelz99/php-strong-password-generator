@@ -1,32 +1,13 @@
 <?php 
 
+// Recupero elementi
 $password_length = $_GET['password-length'] ?? '';
 
-$alphabet = 'a b c d e f g h i j k l m n o p q r s t u v w x y z';
-$uc_alphabet = ucwords($alphabet);
-$uc_alphabet = explode(' ', $uc_alphabet);
-$alphabet = explode(' ', $alphabet);
+// Creazione array caratteri
+include_once __DIR__ . '/includes/script/array_creation.php';
 
-$number = '0 1 2 3 4 5 6 7 8 9';
-$number = explode(' ', $number);
-
-$signs = '! $ % & @';
-$signs = explode(' ', $signs);
-
-$array_characters = array_merge($alphabet, $uc_alphabet, $number, $signs);
-
-function random_password ($length, $array){
-    $password = [];
-
-    for($i = 0; $i < $length; $i++ ){
-        $password[] = $array[rand(0, count($array) - 1 )];
-    };
-
-    $password = implode($password);
-
-    return $password;
-};
-
+// Random Password
+include __DIR__ . '/includes/script/functions.php';
 ?>
 
 <!DOCTYPE html>
@@ -43,7 +24,7 @@ function random_password ($length, $array){
     <div class="container mt-5">
 
         <form action="">
-            <input type="number" name="password-length" >
+            <input type="number" name="password-length" min="1" max="32" >
             <button>Invia</button>
         </form>
         <p>La tua password è: <?= random_password($password_length, $array_characters)  ?></p>
