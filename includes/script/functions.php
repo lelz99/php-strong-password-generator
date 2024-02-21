@@ -10,7 +10,5 @@ function random_password ($length, $array){
         $password[] = $array[rand(0, count($array) - 1 )];
     };
 
-    $password = implode($password);
-
-    return $password;
+    return $password = implode($password);
 };
